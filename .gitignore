@@ -24,3 +24,11 @@ sftp-config.json
 
 # Python
 __pycache__
+.ipynb_checkpoints
+
+# VS Code
+.vscode
+
+# SmartAQnet Credentials
+saqncredentials.py
+test_scripts
