@@ -1,0 +1,3 @@
+[submodule "live_parser"]
+	path = live_parser
+	url = https://github.com/SmartAQnet/live_parser.git
