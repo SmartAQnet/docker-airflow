@@ -80,7 +80,17 @@ RUN chown -R airflow: ${AIRFLOW_USER_HOME}
 
 EXPOSE 8080 5555 8793
 
-USER airflow
+#USER airflow
 WORKDIR ${AIRFLOW_USER_HOME}
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["webserver"]
+RUN pip install --user jupyter notebook
+
+RUN mkdir /usr/local/airflow/parser
+
+RUN pip uninstall -y SQLAlchemy
+RUN pip install SQLAlchemy==1.3.15
+
+RUN pip uninstall -y ipykernel
+RUN pip install ipykernel==5.3.4
+
