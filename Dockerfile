@@ -86,7 +86,8 @@ ENTRYPOINT ["/entrypoint.sh"]
 CMD ["webserver"]
 RUN pip install --user jupyter notebook
 
-RUN mkdir /usr/local/airflow/parser
+RUN mkdir /usr/local/airflow/live_parser
+ENV PYTHONPATH "${PYTHONPATH}:/usr/local/airflow/live_parser"
 
 RUN pip uninstall -y SQLAlchemy
 RUN pip install SQLAlchemy==1.3.15
