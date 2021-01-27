@@ -32,3 +32,6 @@ __pycache__
 # SmartAQnet Credentials
 saqncredentials.py
 test_scripts
+
+# Logfile
+restart_log.log
