@@ -8,13 +8,23 @@ date
 docker container ls -a
 docker stats --no-stream
 
+currenttime=$(date +%H:%M)
+
+
 # check if container is down, else check memory usage
 if [ ! "$(docker ps -q -f name=agitated_raman)" ]
 then 
     echo "Container was down. Restarting. "
     docker restart agitated_raman
+
+# time based restart once a day
+# elif [[ "$currenttime" > "19:45" ]] && [[ "$currenttime" < "20:00" ]]
+# then 
+    # echo "Daily Restart. "
+    # docker restart agitated_raman
+
+# script to restart container if memory usage is too high
 else
-    # script to restart container if memory usage is too high
     IFS=;
     DOCKER_STATS_CMD=`docker stats --no-stream --format "table {{.MemPerc}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.Name}}"`
     SUM_RAM=`echo $DOCKER_STATS_CMD | tail -n +2 | sed "s/%//g" | awk '{s+=$1} END {print s}'`
